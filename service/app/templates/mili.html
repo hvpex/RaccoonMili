@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="mili-head">
+  <div>
+    <h2>Моё логово</h2>
+    <div class="muted">Енот: <b>{{ username }}</b></div>
+    
+    <div style="margin-top: 15px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 8px;">
+      <div>Ссылка на тайник:</div>
+      <a href="/public/{{ username }}" target="_blank" id="public-link-text" style="font-weight:bold; word-break: break-all;">
+        /public/{{ username }}
+      </a>
+      <button class="btn ghost" onclick="copyLink()" style="margin-left: 10px; font-size: 0.8em;">
+        Копировать
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h3>Новый тайник</h3>
+  <form class="form" method="post" action="/stash/create">
+    <label>Название
+      <input name="title" maxlength="64" required placeholder="Например: секретный улов" />
+    </label>
+    <label>Содержимое
+      <textarea name="content" rows="4" maxlength="4096" required placeholder="сюда можно положить что угодно..."></textarea>
+    </label>
+    <button class="btn" type="submit">Спрятать</button>
+  </form>
+</section>
+
+<section class="grid">
+  {% if stashes|length == 0 %}
+    <div class="empty">
+      Пока пусто🦝✨
+    </div>
+  {% endif %}
+
+  {% for s in stashes %}
+    <div class="stash">
+      <div class="stash-h">🦝 {{ s.title }}</div>
+      <div class="stash-c">{{ s.content }}</div>
+      <div class="stash-meta">id={{ s.id }} · {{ s.created_at }}</div>
+
+      <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn ghost" type="button" onclick="copyLink()">
+          🔗 Скопировать ссылку
+        </button>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+<script>
+function copyLink() {
+  const fullLink = window.location.origin + "/public/{{ username }}";
+  
+  navigator.clipboard.writeText(fullLink).then(() => {
+    alert("Ссылка скопирована в буфер обмена:\n" + fullLink);
+  }).catch(err => {
+    console.error('Ошибка копирования: ', err);
+    prompt("Скопируйте ссылку вручную:", fullLink);
+  });
+}
+</script>
+{% endblock %}

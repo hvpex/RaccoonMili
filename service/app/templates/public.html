@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="mili-head">
+  <div>
+    <h2>🦝 Тайник</h2>
+    <div class="muted">Владелец: <b>{{ owner_name }}</b></div>
+  </div>
+</section>
+
+<section class="grid">
+  
+  {% if stashes|length == 0 %}
+    <div class="empty">
+       Тут пусто 🌑
+    </div>
+  {% endif %}
+
+  {% for stash in stashes %}
+    <div class="stash">
+      <div class="stash-h">{{ stash.title }}</div>
+      <div class="stash-c">{{ stash.content }}</div>
+      <div class="stash-meta">{{ stash.created_at }}</div>
+    </div>
+  {% endfor %}
+
+</section>
+
+<div style="margin-top:20px; text-align:center;">
+   <a href="/" class="btn ghost">← На главную</a>
+</div>
+
+{% endblock %}

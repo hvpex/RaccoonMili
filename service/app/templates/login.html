@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-wrap">
+  <section class="panel auth-panel">
+    <h2>Вход</h2>
+    <form class="form" method="post" action="/login">
+      <label>Имя енота
+        <input name="username" required placeholder="raccoon123" />
+      </label>
+      <label>Пароль
+        <input name="password" type="password" required placeholder="••••••••" />
+      </label>
+      <button class="btn" type="submit">Войти</button>
+    </form>
+  </section>
+</section>
+{% endblock %}

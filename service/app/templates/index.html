@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-left">
+    <h1>Енот собирает «блестяшки»</h1>
+    <p class="muted">
+      Создавай тайники, прячь записи, веди коллекцию.
+    </p>
+
+    <div class="actions">
+      {% if logged_in %}
+        <a class="btn" href="/mili">Открыть логово ({{ username }})</a>
+      {% else %}
+        <a class="btn" href="/register">Начать</a>
+        <a class="btn ghost" href="/login">Войти</a>
+      {% endif %}
+    </div>
+
+    <div class="hint">
+      <div class="pill">/health</div>
+      <div class="pill">/api/register</div>
+      <div class="pill">/api/login</div>
+      <div class="pill">/api/stash</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="card-title">Пример тайника</div>
+      <div class="stash-grid">
+        <div class="stash">
+          <div class="stash-h">🌙 Ночной улов</div>
+          <div class="stash-c">Запрятать, пока никто не видит…</div>
+        </div>
+        <div class="stash">
+          <div class="stash-h">🍪 Печеньки</div>
+          <div class="stash-c">Съесть 1 шт. или сразу все?</div>
+        </div>
+        <div class="stash">
+          <div class="stash-h">🧪 Эксперименты</div>
+          <div class="stash-c">Не трогать подозрительные колбы.</div>
+        </div>
+      </div>
+    </div>
+
+    <img src="/static/racooncool.png" alt="Raccoon" class="hero-raccoon-out" />
+  </div>
+</section>
+{% endblock %}

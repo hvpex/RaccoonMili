@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+{% block content %}
+<section class="panel lb-panel">
+  <img src="/static/racoonboard.png" alt="" class="lb-bg" />
+  <div class="lb-inner">
+    <h2>🏆 Лидерборд енотов</h2>
+    <p class="muted">Кто больше всего прячет тайников.</p>
+
+    <div class="lb lb-center">
+      <div class="lb-head">
+        <div>#</div>
+        <div>Енот</div>
+        <div>Тайники</div>
+      </div>
+
+      {% for r in rows %}
+        <div class="lb-row {% if loop.index == 1 %}lb-top1{% elif loop.index == 2 %}lb-top2{% elif loop.index == 3 %}lb-top3{% endif %}">
+          <div>{{ loop.index }}</div>
+          <div class="lb-user">🦝 {{ r.username }}</div>
+          <div class="lb-count">{{ r.stash_count }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

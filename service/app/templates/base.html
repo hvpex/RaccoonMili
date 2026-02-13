@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ app_name }}</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+      <img src="/static/racoon.png" alt="" class="logo-img" />
+    </div>
+      <div>
+        <div class="brand-title">{{ app_name }}</div>
+        <div class="brand-sub">Логово енота и его тайники</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="/" class="navlink">Главная</a>
+      <a href="/leaderboard" class="navlink">Лидерборд</a>
+      {% if logged_in %}
+        <a href="/mili" class="navlink">Моё логово</a>
+        <a href="/logout" class="navlink danger">Выйти</a>
+      {% else %}
+        <a href="/login" class="navlink">Войти</a>
+        <a href="/register" class="navlink">Регистрация</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main class="wrap">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div>🦝 RaccoonMili</div>
+  </footer>
+</body>
+</html>

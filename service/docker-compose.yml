@@ -1,0 +1,11 @@
+services:
+  raccoonmili:
+    build: .
+    restart: unless-stopped
+    cpus: 2.0
+    mem_limit: 1024M
+    pids_limit: 256
+    environment:
+      - APP_SECRET=MiliEnot
+    ports:
+      - "${PORT}:8080"
